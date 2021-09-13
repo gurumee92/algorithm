@@ -16,13 +16,21 @@ func Test_solution(t *testing.T) {
 	}{
 		{
 			name: "1st",
-			args: args{},
-			want: "",
+			args: args{
+				table:      []string{"SI JAVA JAVASCRIPT SQL PYTHON C#", "CONTENTS JAVASCRIPT JAVA PYTHON SQL C++", "HARDWARE C C++ PYTHON JAVA JAVASCRIPT", "PORTAL JAVA JAVASCRIPT PYTHON KOTLIN PHP", "GAME C++ C# JAVASCRIPT C JAVA"},
+				languages:  []string{"PYTHON", "C++", "SQL"},
+				preference: []int{7, 5, 5},
+			},
+			want: "HARDWARE",
 		},
 		{
 			name: "2nd",
-			args: args{},
-			want: "",
+			args: args{
+				table:      []string{"SI JAVA JAVASCRIPT SQL PYTHON C#", "CONTENTS JAVASCRIPT JAVA PYTHON SQL C++", "HARDWARE C C++ PYTHON JAVA JAVASCRIPT", "PORTAL JAVA JAVASCRIPT PYTHON KOTLIN PHP", "GAME C++ C# JAVASCRIPT C JAVA"},
+				languages:  []string{"JAVA", "JAVASCRIPT"},
+				preference: []int{7, 5},
+			},
+			want: "PORTAL",
 		},
 	}
 	for _, tt := range tests {
