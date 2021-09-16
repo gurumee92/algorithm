@@ -50,6 +50,7 @@ func solution(table []string, languages []string, preference []int) string {
 		}
 	}
 
+	// 4. 사전순으로 정렬
 	sort.Slice(results, func(i, j int) bool {
 		return results[i] < results[j]
 	})
