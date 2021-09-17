@@ -18,7 +18,7 @@ func solution(table []string, languages []string, preference []int) string {
 		languagePreferenceByJob[job] = make(map[string]int)
 
 		for idx, language := range preferredLanguages {
-			languagePreferenceByJob[job][language] = (POINT - idx)
+			languagePreferenceByJob[job][language] = POINT - idx
 		}
 	}
 
@@ -31,7 +31,7 @@ func solution(table []string, languages []string, preference []int) string {
 
 		for idx, language := range languages {
 			preferScore := preference[idx]
-			score += (languagePreference[language] * preferScore)
+			score += languagePreference[language] * preferScore
 		}
 
 		scoreByJob[job] = score
