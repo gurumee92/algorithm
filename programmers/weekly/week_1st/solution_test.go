@@ -3,8 +3,8 @@ package week_1st
 import "testing"
 
 func TestArithmeticSequence(t *testing.T) {
-	var tests =[]struct{
-		n int
+	var tests = []struct {
+		n        int
 		expected int
 	}{
 		{1, 1},
@@ -24,10 +24,10 @@ func TestArithmeticSequence(t *testing.T) {
 }
 
 func TestSolution(t *testing.T) {
-	var tests =[]struct{
-		price int
-		money int
-		count int
+	var tests = []struct {
+		price    int
+		money    int
+		count    int
 		expected int64
 	}{
 		{3, 20, 4, 10},
