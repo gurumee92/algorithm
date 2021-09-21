@@ -5,7 +5,7 @@
 """
 import pytest
 
-from programmers.weekly.weekly_5th.solution import solution
+from programmers.weekly.week_5th.solution import solution
 
 
 TEST_DATA = [
