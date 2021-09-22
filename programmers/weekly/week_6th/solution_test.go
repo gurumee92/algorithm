@@ -38,7 +38,7 @@ func Test_solution(t *testing.T) {
 				weights:   []int{60, 70, 60},
 				head2head: []string{"NNN", "NNN", "NNN"},
 			},
-			want: []int{2, 3, 1},
+			want: []int{2, 1, 3},
 		},
 	}
 	for _, tt := range tests {
