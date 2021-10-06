@@ -8,8 +8,18 @@
 
 ## 문제 풀이
 
-
 ## 코드
 
+전체 코드는 다음과 같다.
+
 ```python
+def solution(sizes):
+    sizes = sorted([sorted(size, reverse=True) for size in sizes], reverse=True)
+    width, height = sizes[0]
+
+    for _, tmp in sizes[1:]:
+        height = max(height, tmp)
+
+    answer = width * height
+    return answer
 ```
