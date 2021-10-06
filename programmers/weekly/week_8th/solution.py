@@ -3,6 +3,7 @@
 
 코딩테스트 연습 > 위클리 챌린지 > 8주차_최소직사각형(https://programmers.co.kr/learn/courses/30/lessons/86491) 문제 풀이
 """
+import heapq
 
 
 def solution(sizes):
@@ -13,11 +14,12 @@ def solution(sizes):
     출력:
     * answer: int
     """
-    sizes = sorted([sorted(size, reverse=True) for size in sizes], reverse=True)
-    width, height = sizes[0]
+    heap_width = []
+    heap_hight = []
 
-    for _, tmp in sizes[1:]:
-        height = max(height, tmp)
+    for width, height in sizes:
+        heapq.heappush(heap_width, -max(width, height))
+        heapq.heappush(heap_hight, -min(width, height))
 
-    answer = width * height
+    answer = heapq.heappop(heap_width) * heapq.heappop(heap_hight)
     return answer
