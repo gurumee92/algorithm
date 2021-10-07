@@ -15,11 +15,11 @@ def solution(sizes):
     * answer: int
     """
     heap_width = []
-    heap_hight = []
+    heap_height = []
 
     for width, height in sizes:
         heapq.heappush(heap_width, -max(width, height))
-        heapq.heappush(heap_hight, -min(width, height))
+        heapq.heappush(heap_height, -min(width, height))
 
-    answer = heapq.heappop(heap_width) * heapq.heappop(heap_hight)
+    answer = heapq.heappop(heap_width) * heapq.heappop(heap_height)
     return answer

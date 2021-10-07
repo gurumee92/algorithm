@@ -39,9 +39,45 @@ heap_width = []
 heap_height = []
 ```
 
-먼저 `sizes`를 순회한다. 순회할 때 첫번째 원소와 두번쨰 원소 중 큰 것이 가로로, 작은 것이 세로로 가면 된다. 
+먼저 `sizes`를 순회한다. 순회할 때 첫번째 원소와 두번째 원소 중 큰 것이 가로로, 작은 것이 세로로 가면 된다. 각 순회 시, 힙 상황은 다음과 같다.
 
+순회 첫 번째
+```
+sizes[0] = [60, 50]
+heap_width = [60]
+heap_height = [50]
+```
 
+순회 두 번째
+```
+sizes[1] = [30, 70]
+heap_width = [70, 60]
+heap_height = [50, 30]
+```
+
+순회 세 번째
+```
+sizes[2] = [60, 30]
+heap_width = [70, 60, 60]
+heap_height = [50, 30, 30]
+
+```
+
+순회 네 번째
+```
+sizes[3] = [80, 40]
+heap_width = [80, 70, 60, 60]
+heap_height = [50, 40, 30, 30]
+```
+
+그 후 힙의 첫 원소를 꺼내서 곱하면 된다.
+
+```
+# heappop은 힙의 첫 원소를 꺼낸다.
+width = heappop(heap_width)     # 80
+height = heappop(heap_height)   # 50
+answer = width * height         # 4000
+```
 ## 코드
 
 위의 내용을 구현만 하면 된다. 전체 코드는 다음과 같다. 다만 `Python`의 `heapq`는 최소 힙이기 때문에 -를 붙여 저장하면 최대 힙이 된다.
@@ -52,12 +88,12 @@ import heapq
 
 def solution(sizes):
     heap_width = []
-    heap_hight = []
+    heap_height = []
 
     for width, height in sizes:
         heapq.heappush(heap_width, -max(width, height))
-        heapq.heappush(heap_hight, -min(width, height))
+        heapq.heappush(heap_height, -min(width, height))
 
-    answer = heapq.heappop(heap_width) * heapq.heappop(heap_hight)
+    answer = heapq.heappop(heap_width) * heapq.heappop(heap_height)
     return answer
 ```
