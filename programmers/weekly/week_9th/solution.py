@@ -5,26 +5,26 @@
 """
 MAX = 100
 
+
 def dfs(cur, n, is_visit, graph):
+    is_visit[cur] = True
+    cnt = is_visit.count(True)
     is_rest = False
 
-    for i in range(n):
-        _next = graph[cur][i]
-
-        if _next == 1 and not is_visit[_next]:
+    for _next in range(n):
+        if graph[cur][_next] == 1 and not is_visit[_next]:
             is_rest = True
+            break
 
     if not is_rest:
-        return is_visit.count(True) + 1
-    
-    is_visit[cur] = True
-    cnt = 0
+        return cnt
 
-    for _next in graph[cur]:
-        if _next == 1 and not is_visit[_next]:
+    for _next in range(n):
+        if graph[cur][_next] == 1 and not is_visit[_next]:
             cnt = max(cnt, dfs(_next, n, is_visit, graph))
 
     return cnt
+
 
 def solution(n, wires):
     """
@@ -35,32 +35,26 @@ def solution(n, wires):
     출력:
     * answer: int
     """
-    # 1. 그래프 초기화
     graph = [[0 for _ in range(n)] for _ in range(n)]
-    
-    for (_to, _from) in wires:
-        _to -= 1
-        _from -= 1
-        graph[_to][_from] = 1
-        graph[_from][_to] = 1
 
-    
+    for (_to, _from) in wires:
+        graph[_to - 1][_from - 1] = 1
+        graph[_from - 1][_to - 1] = 1
+
     answer = MAX
 
     for (_to, _from) in wires:
-        _to -= 1
-        _from -= 1
-        graph[_to][_from] = 0
-        graph[_from][_to] = 0
-        cnt = 0
+        graph[_to - 1][_from - 1] = 0
+        graph[_from - 1][_to - 1] = 0
 
-        for i in range(n):
+        for cur in range(n):
             is_visit = [False for _ in range(n)]
-            cnt = max(cnt, dfs(i, n, is_visit, graph))
-        
-        diff = abs((n - cnt) - cnt)
-        answer = min(answer, diff)
-        graph[_to][_from] = 1
-        graph[_from][_to] = 1
+            path_a = dfs(cur, n, is_visit, graph)
+            path_b = n - path_a
+            diff = abs(path_a - path_b)
+            answer = min(answer, diff)
+
+        graph[_to - 1][_from - 1] = 1
+        graph[_from - 1][_to - 1] = 1
 
     return answer
